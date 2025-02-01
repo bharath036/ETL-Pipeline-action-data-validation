@@ -9,7 +9,7 @@ on:
 jobs:
   #name of job
   validation-pipeline:
-    run-on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
     - name: Checkout Code
     #below takes our code from remote and push to ubuntu server
