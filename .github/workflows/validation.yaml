@@ -1,0 +1,38 @@
+name: Data validation
+
+#actions to trigger
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+  #name of job
+  validation-pipeline:
+    run-on: ubuntu-latest
+    steps:
+    - name: Checkout Code
+    #below takes our code from remote and push to ubuntu server
+      uses: actions/checkout@v2
+
+    - name: Setting up Python
+      uses: actions/setup-python@v2 
+      with:
+        python-version: 3.9
+
+    - name: Libraries Installations:
+      run: pip install pandas datatime
+
+    - name: Run the script
+      run: python app.py
+
+    #it has to run code and logs will be found in our repo in validation_log.tax
+    - name: Publish files to github repo
+    #below is the public github action , this can be used commonly by all users
+    #just copy and check in code this action for better understanding
+      uses: mikeal/publish-to-github-action@master
+      env: 
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        BRANCH_NAME: 'main'
+
+    
