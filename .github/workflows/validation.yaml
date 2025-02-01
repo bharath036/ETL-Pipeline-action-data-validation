@@ -20,7 +20,7 @@ jobs:
       with:
         python-version: 3.9
 
-    - name: Libraries Installations:
+    - name: Libraries Installation
       run: pip install pandas datatime
 
     - name: Run the script
